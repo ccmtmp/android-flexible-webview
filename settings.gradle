@@ -1,2 +1,3 @@
+include ':flexiblewebview'
 include ':sample'
 rootProject.name = "Flexible WebView"
