@@ -22,7 +22,7 @@ jobs:
                 path: ~/.gradle/caches
                 key: gradle-${{ runner.os }}-${{ hashFiles('**/build.gradle') }}-${{ hashFiles('**/gradle/wrapper/gradle-wrapper.properties') }}
             - name: Ktlint
-                run: ./gradlew ktlint
+              run: ./gradlew ktlint
 #            - name: Checkstyle
 #              run: ./gradlew checkstyle
             - name: Lint
