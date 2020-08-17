@@ -26,7 +26,7 @@ Table of contents
 ### Requirements
 
 * Android 5.0 (API level 21) and above
-* [Android Gradle Plugin](https://developer.android.com/studio/releases/gradle-plugin) 4.0.1
+* [Android Gradle Plugin](https://developer.android.com/studio/releases/gradle-plugin) 4.0+
 * [AndroidX](https://developer.android.com/jetpack/androidx/)
 
 ### Configuration
