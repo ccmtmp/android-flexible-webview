@@ -5,7 +5,6 @@ import android.os.Handler
 import android.os.Looper
 import android.view.ViewGroup
 import android.webkit.*
-import android.webkit.WebSettings.getDefaultUserAgent
 import android.widget.ProgressBar
 import androidx.core.view.ViewCompat
 import androidx.core.view.isVisible
@@ -16,6 +15,7 @@ import com.ccm.lib.flexiblewebview.settings.CacheMode
 import com.ccm.lib.flexiblewebview.utils.DEFAULT_ENCODING
 import com.ccm.lib.flexiblewebview.utils.DEFAULT_MIME_TYPE
 import com.ccm.lib.flexiblewebview.utils.atLeastApi21
+import com.ccm.lib.flexiblewebview.utils.getDefaultUserAgent
 import com.lsjwzh.widget.materialloadingprogressbar.CircleProgressBar
 
 class FlexibleWebView(
@@ -41,13 +41,12 @@ class FlexibleWebView(
     var animDuration = 500L
     var onWebViewDisplayCallback: Runnable? = null
 
-
     init {
         CookieManager.getInstance().setAcceptCookie(acceptCookie)
     }
 
     fun setDefaultUserAgentWithSuffix(suffix: String) {
-        userAgent = getDefaultUserAgent(context)
+        userAgent = context?.getDefaultUserAgent()
         this.userAgent = "$userAgent $suffix"
     }
 
@@ -152,10 +151,13 @@ class FlexibleWebView(
         viewGroup?.apply {
             isVisible = true
             alpha = 0F
-            Handler(Looper.getMainLooper()).postDelayed({
-                ViewCompat.animate(viewGroup).setDuration(animationDuration).alpha(1F)
-                    .withEndAction(callback)
-            }, 80)
+            Handler(Looper.getMainLooper()).postDelayed(
+                {
+                    ViewCompat.animate(viewGroup).setDuration(animationDuration).alpha(1F)
+                        .withEndAction(callback)
+                },
+                80
+            )
         }
     }
 

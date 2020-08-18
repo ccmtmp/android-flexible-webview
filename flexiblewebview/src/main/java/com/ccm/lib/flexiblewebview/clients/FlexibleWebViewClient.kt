@@ -1,7 +1,6 @@
 package com.ccm.lib.flexiblewebview.clients
 
 import android.content.Context
-import android.graphics.Bitmap
 import android.net.http.SslError
 import android.util.Log
 import android.webkit.*
@@ -31,7 +30,7 @@ open class FlexibleWebViewClient(
         if (atLeastApi21()) {
             Log.e(
                 TAG,
-                "onReceivedHttpError: request=${request.toString()}; errorResponse=${errorResponse?.reasonPhrase}"
+                "onReceivedHttpError: request=$request; errorResponse=${errorResponse?.reasonPhrase}"
             )
         }
     }
@@ -58,7 +57,7 @@ open class FlexibleWebViewClient(
         if (atLeastApi23()) {
             Log.e(
                 TAG,
-                "onReceivedError: request=${request.toString()}; error=${error?.description}"
+                "onReceivedError: request=$request; error=${error?.description}"
             )
         }
     }
@@ -67,7 +66,7 @@ open class FlexibleWebViewClient(
         super.onReceivedSslError(view, handler, error)
         Log.e(
             TAG,
-            "onReceivedSslError: error=${error.toString()}"
+            "onReceivedSslError: error=$error"
         )
     }
 }

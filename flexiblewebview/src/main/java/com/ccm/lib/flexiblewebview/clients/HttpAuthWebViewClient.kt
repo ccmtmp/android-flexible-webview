@@ -25,7 +25,6 @@ open class HttpAuthWebViewClient(private var context: Context? = null) : WebView
     var userName: String? = null
     var userPass: String? = null
 
-
     init {
         context = contextRef.get()
     }
