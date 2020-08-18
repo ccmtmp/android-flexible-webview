@@ -3,10 +3,7 @@ package com.ccm.lib.flexiblewebview
 import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
-import com.ccm.lib.flexiblewebview.demo.DemoWebViewActivity
-import com.ccm.lib.flexiblewebview.demo.NormalProgressBarWebViewActivity
-import com.ccm.lib.flexiblewebview.demo.HtmlContentActivity
-import com.ccm.lib.flexiblewebview.demo.SimpleWebViewActivity
+import com.ccm.lib.flexiblewebview.demo.*
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
@@ -28,6 +25,9 @@ class MainActivity : AppCompatActivity() {
         }
         btnHtmlContent.setOnClickListener {
             startActivity(Intent(this, HtmlContentActivity::class.java))
+        }
+        btnUrlScheme.setOnClickListener {
+            startActivity(Intent(this, UrlSchemeActivity::class.java))
         }
     }
 }

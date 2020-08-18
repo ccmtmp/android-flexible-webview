@@ -10,7 +10,9 @@ import androidx.appcompat.app.AlertDialog
 import com.ccm.lib.flexiblewebview.R
 import java.lang.ref.WeakReference
 
-open class HttpAuthWebViewClient(private var context: Context? = null) : WebViewClient() {
+open class HttpAuthWebViewClient(
+    private var context: Context? = null
+) : WebViewClient() {
 
     private val contextRef = WeakReference<Context>(context)
 

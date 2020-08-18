@@ -4,13 +4,11 @@ import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import com.ccm.lib.flexiblewebview.FlexibleWebView
 import com.ccm.lib.flexiblewebview.R
-import com.ccm.lib.flexiblewebview.config.Constants
-import com.ccm.lib.flexiblewebview.settings.CacheMode
 import kotlinx.android.synthetic.main.activity_demo.*
 
-class DemoWebViewActivity : AppCompatActivity() {
+class UrlSchemeActivity : AppCompatActivity() {
 
-    private val TAG = DemoWebViewActivity::class.java.simpleName
+    private val TAG = UrlSchemeActivity::class.java.simpleName
     private lateinit var flexibleWebView: FlexibleWebView
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -18,14 +16,8 @@ class DemoWebViewActivity : AppCompatActivity() {
         setContentView(R.layout.activity_demo)
 
         flexibleWebView = FlexibleWebView(this).apply {
-            cacheMode = CacheMode.LOAD_NO_CACHE
-            animDuration = 700L
-            allowHttpMixedContent = false
-            circleProgressBar = this@DemoWebViewActivity.progressBar
-            webViewContainer = this@DemoWebViewActivity.webViewContainer
-            setWebView(webView)
-
-            loadUrl(Constants.DEMO_URL)
+            setWebView(this@UrlSchemeActivity.webView)
+            loadUrl("file:///android_asset/demo_url_scheme.html")
         }
     }
 

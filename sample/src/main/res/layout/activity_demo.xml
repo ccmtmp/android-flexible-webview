@@ -29,7 +29,7 @@
         app:layout_constraintTop_toTopOf="parent"
         fab:mlpb_enable_circle_background="true"
         fab:mlpb_inner_radius="18dp"
-        fab:mlpb_progress_color="#ff79777b"
+        fab:mlpb_progress_color="#707cff"
         fab:mlpb_show_arrow="false"
         tools:visibility="visible" />
 

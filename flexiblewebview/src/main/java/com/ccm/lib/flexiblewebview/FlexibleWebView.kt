@@ -25,15 +25,17 @@ class FlexibleWebView(
 
     private val TAG = FlexibleWebView::class.java.simpleName
 
-    var cacheMode = CacheMode.LOAD_DEFAULT
-    var allowHttpMixedContent = false
-    var isJavaScriptEnabled = false
+    var cacheMode: CacheMode = CacheMode.LOAD_DEFAULT
+    var allowHttpMixedContent = true
+    var isJavaScriptEnabled = true
     var allowAutoMediaPlayback = false
+
     var userAgent: String? = null
 
     private lateinit var webView: WebView
     var customWebViewClient: WebViewClient? = null
     var customWebChromeClient: WebChromeClient? = null
+    var hideScrollBar: Boolean = true
     var circleProgressBar: CircleProgressBar? = null
     var progressBar: ProgressBar? = null
 
@@ -60,7 +62,15 @@ class FlexibleWebView(
         if (atLeastApi21()) {
             CookieManager.getInstance().setAcceptThirdPartyCookies(webView, true)
         }
+
+        if (hideScrollBar) {
+            webView.scrollBarStyle = WebView.SCROLLBARS_OUTSIDE_OVERLAY
+        }
+
+        initWebViewSettings()
     }
+
+    fun getCustomWebView() = this.webView
 
     private fun initWebViewSettings() {
         if (!this::webView.isInitialized) {
@@ -100,10 +110,7 @@ class FlexibleWebView(
 
     private fun updateWebClient() {
         val client =
-            if (customWebViewClient != null) customWebViewClient else FlexibleWebViewClient(
-                context,
-                webView
-            )
+            if (customWebViewClient != null) customWebViewClient else FlexibleWebViewClient(context)
         if (client != null) {
             webView.webViewClient = client
         }
@@ -120,18 +127,26 @@ class FlexibleWebView(
     }
 
     fun loadUrl(url: String, additionalHttpHeaders: Map<String, String> = mapOf()) {
-        initWebViewSettings()
         if (additionalHttpHeaders.isEmpty()) {
             webView.loadUrl(url)
         } else {
             webView.loadUrl(url, additionalHttpHeaders)
         }
+        startDisplayAnimation(webViewContainer, animDuration, onWebViewDisplayCallback)
+    }
 
+    fun loadDataWithBaseURL(url: String, data: String, historyUrl: String? = null) {
+        webView.loadDataWithBaseURL(
+            url,
+            data,
+            DEFAULT_MIME_TYPE,
+            DEFAULT_ENCODING,
+            historyUrl
+        )
         startDisplayAnimation(webViewContainer, animDuration, onWebViewDisplayCallback)
     }
 
     fun loadWebContent(webContent: WebContent) {
-        initWebViewSettings()
         webView.loadDataWithBaseURL(
             webContent.baseUrl,
             webContent.getRenderedHtml(),
@@ -139,7 +154,6 @@ class FlexibleWebView(
             DEFAULT_ENCODING,
             webContent.historyUrl
         )
-
         startDisplayAnimation(webViewContainer, animDuration, onWebViewDisplayCallback)
     }
 
