@@ -35,7 +35,7 @@ Add `flexible-webview` to your `build.gradle` dependencies.
 
 ```
 dependencies {
-    implementation 'com.github.ccmtmp:flexible-webview:1.0.0'
+    implementation 'com.github.ccmtmp:flexible-webview:2.0.1'
 }
 ```
 
