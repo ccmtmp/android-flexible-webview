@@ -29,5 +29,8 @@ class MainActivity : AppCompatActivity() {
         btnUrlScheme.setOnClickListener {
             startActivity(Intent(this, UrlSchemeActivity::class.java))
         }
+        btnDownloadFile.setOnClickListener {
+            startActivity(Intent(this, DownloadFileActivity::class.java))
+        }
     }
 }

@@ -36,4 +36,10 @@
         android:layout_height="wrap_content"
         android:text="URL Scheme" />
 
+    <Button
+        android:id="@+id/btnDownloadFile"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Download File" />
+
 </LinearLayout>

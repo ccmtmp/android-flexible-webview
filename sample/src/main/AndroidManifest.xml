@@ -22,6 +22,7 @@
         <activity android:name=".demo.HtmlContentActivity" />
         <activity android:name=".demo.NormalProgressBarWebViewActivity" />
         <activity android:name=".demo.UrlSchemeActivity" />
+        <activity android:name=".demo.DownloadFileActivity" />
 
     </application>
 

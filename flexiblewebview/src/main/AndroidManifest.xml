@@ -1,9 +1,10 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.ccm.lib.flexiblewebview"
-    android:versionCode="4"
-    android:versionName="2.0.2">
+    android:versionCode="5"
+    android:versionName="2.0.3">
 
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.INTERNET" />
 
 </manifest>

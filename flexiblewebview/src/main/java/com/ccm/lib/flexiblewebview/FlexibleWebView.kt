@@ -1,28 +1,33 @@
 package com.ccm.lib.flexiblewebview
 
+import android.Manifest
+import android.app.Activity
+import android.app.DownloadManager
 import android.content.Context
+import android.content.pm.PackageManager
+import android.net.Uri
+import android.os.Environment
 import android.os.Handler
 import android.os.Looper
+import android.util.Log
 import android.view.ViewGroup
 import android.webkit.*
 import android.widget.ProgressBar
+import androidx.appcompat.app.AlertDialog
+import androidx.core.app.ActivityCompat
 import androidx.core.view.ViewCompat
 import androidx.core.view.isVisible
 import com.ccm.lib.flexiblewebview.clients.FlexibleChromeClient
 import com.ccm.lib.flexiblewebview.clients.FlexibleWebViewClient
 import com.ccm.lib.flexiblewebview.data.WebContent
 import com.ccm.lib.flexiblewebview.settings.CacheMode
-import com.ccm.lib.flexiblewebview.utils.DEFAULT_ENCODING
-import com.ccm.lib.flexiblewebview.utils.DEFAULT_MIME_TYPE
-import com.ccm.lib.flexiblewebview.utils.atLeastApi21
-import com.ccm.lib.flexiblewebview.utils.getDefaultUserAgent
+import com.ccm.lib.flexiblewebview.utils.*
 import com.lsjwzh.widget.materialloadingprogressbar.CircleProgressBar
 
 class FlexibleWebView(
     private val context: Context? = null,
     private val acceptCookie: Boolean = true
 ) {
-
     private val TAG = FlexibleWebView::class.java.simpleName
 
     var cacheMode: CacheMode = CacheMode.LOAD_DEFAULT
@@ -43,6 +48,8 @@ class FlexibleWebView(
     var animDuration = 500L
     var onWebViewDisplayCallback: Runnable? = null
 
+    var allowDownloadFile = true
+
     init {
         CookieManager.getInstance().setAcceptCookie(acceptCookie)
     }
@@ -51,26 +58,6 @@ class FlexibleWebView(
         userAgent = context?.getDefaultUserAgent()
         this.userAgent = "$userAgent $suffix"
     }
-
-    fun setWebView(webView: WebView) {
-        this.webView = webView
-
-        /**
-         * Starting from Android 5.0, can not store third-party cookies with WebView.
-         * Enable third-party cookie support can synchronize cookies automatically to solve verification issue of login.
-         * */
-        if (atLeastApi21()) {
-            CookieManager.getInstance().setAcceptThirdPartyCookies(webView, true)
-        }
-
-        if (hideScrollBar) {
-            webView.scrollBarStyle = WebView.SCROLLBARS_OUTSIDE_OVERLAY
-        }
-
-        initWebViewSettings()
-    }
-
-    fun getCustomWebView() = this.webView
 
     private fun initWebViewSettings() {
         if (!this::webView.isInitialized) {
@@ -106,6 +93,10 @@ class FlexibleWebView(
 
         updateWebClient()
         updateWebChromeClient()
+
+        if (allowDownloadFile) {
+            initDownloadListener()
+        }
     }
 
     private fun updateWebClient() {
@@ -125,6 +116,79 @@ class FlexibleWebView(
             webView.webChromeClient = client
         }
     }
+
+    private fun initDownloadListener() {
+        webView.setDownloadListener { url, userAgent, contentDisposition, mimetype, contentLength ->
+            if (atLeastApi23()) {
+                val activity = context as? Activity ?: return@setDownloadListener
+                if (activity.checkSelfPermission(Manifest.permission.WRITE_EXTERNAL_STORAGE) == PackageManager.PERMISSION_GRANTED) {
+                    showDownloadDialog(url, userAgent, contentDisposition, mimetype)
+                } else {
+                    ActivityCompat.requestPermissions(
+                        activity,
+                        arrayOf(Manifest.permission.WRITE_EXTERNAL_STORAGE),
+                        1
+                    )
+                }
+            } else {
+                showDownloadDialog(url, userAgent, contentDisposition, mimetype)
+            }
+        }
+    }
+
+    private fun showDownloadDialog(
+        url: String?,
+        userAgent: String?,
+        contentDisposition: String?,
+        mimetype: String?
+    ) {
+        val context = context ?: return
+        val fileName = URLUtil.guessFileName(url, contentDisposition, mimetype)
+        val builder = AlertDialog.Builder(context).apply {
+            setTitle("Download")
+            setMessage("Do you want to save $fileName?")
+            setPositiveButton("Yes") { _, _ ->
+                val cookie = CookieManager.getInstance().getCookie(url)
+                val request = DownloadManager.Request(Uri.parse(url)).apply {
+                    addRequestHeader("Cookie", cookie)
+                    addRequestHeader("User-Agent", userAgent)
+                    if (!atLeastApi29()) {
+                        allowScanningByMediaScanner()
+                    }
+                    setNotificationVisibility(DownloadManager.Request.VISIBILITY_VISIBLE_NOTIFY_COMPLETED)
+                    setDestinationInExternalPublicDir(Environment.DIRECTORY_DOWNLOADS, fileName)
+                }
+                val downloadManager =
+                    context.getSystemService(Context.DOWNLOAD_SERVICE) as DownloadManager
+                downloadManager.enqueue(request)
+            }
+            setNegativeButton("Cancel") { dialog, _ ->
+                dialog.cancel()
+            }
+        }
+        val dialog = builder.create()
+        dialog.show()
+    }
+
+    fun setWebView(webView: WebView) {
+        this.webView = webView
+
+        /**
+         * Starting from Android 5.0, can not store third-party cookies with WebView.
+         * Enable third-party cookie support can synchronize cookies automatically to solve verification issue of login.
+         * */
+        if (atLeastApi21()) {
+            CookieManager.getInstance().setAcceptThirdPartyCookies(webView, true)
+        }
+
+        if (hideScrollBar) {
+            webView.scrollBarStyle = WebView.SCROLLBARS_OUTSIDE_OVERLAY
+        }
+
+        initWebViewSettings()
+    }
+
+    fun getCustomWebView() = this.webView
 
     fun loadUrl(url: String, additionalHttpHeaders: Map<String, String> = mapOf()) {
         if (additionalHttpHeaders.isEmpty()) {

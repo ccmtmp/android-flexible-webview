@@ -73,10 +73,7 @@ open class FlexibleWebViewClient(
     ) {
         super.onReceivedHttpError(view, request, errorResponse)
         if (atLeastApi21()) {
-            Log.e(
-                TAG,
-                "onReceivedHttpError: request=$request; errorResponse=${errorResponse?.reasonPhrase}"
-            )
+            Log.e(TAG, "onReceivedHttpError: errorResponse=${errorResponse?.reasonPhrase}")
         }
     }
 
