@@ -38,3 +38,14 @@ dependencies {
     implementation 'com.github.ccmtmp:flexible-webview:1.0.0'
 }
 ```
+
+## Features
+
+**Set Authentication Header**: If need proceed with authentication with your credentials, set your user name and password to `HttpAuthWebViewClient`.
+
+```kotlin
+val webViewClient = HttpAuthWebViewClient(context, webView).apply {
+    userName = "YOUR_AUTH_USERNAME"
+    userPass = "YOUR_AUTH_PASSWORD"
+}
+```
