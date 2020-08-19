@@ -29,14 +29,13 @@ class DemoWebViewActivity : BaseActivity() {
 
             /* Optional to set these clients */
             customWebViewClient = CustomFlexibleWebViewClient(this@DemoWebViewActivity).apply {
-                // TODO: Set name and password if has authentication
+                // Optional to set name and password if has authentication
                 userName = ""
                 userPass = ""
 
+                // Optional settings
                 cacheAppCookie = false
-
                 handleUrlScheme = false
-
                 allowDownloadFile = false
             }
             customWebChromeClient = CustomFlexibleChromeClient(this@DemoWebViewActivity.progressBar)
