@@ -91,7 +91,7 @@ val flexibleWebView = FlexibleWebView(context).apply {
 
 Get started with [sample projects](https://github.com/ccmtmp/flexible-webview/tree/master/sample).
 
-The `DemoWebViewActivity` class is the entry-point and contains most of available settings for WebView. It will let you have an overview of this library.
+The [DemoWebViewActivity](https://github.com/ccmtmp/flexible-webview/blob/master/sample/src/main/java/com/ccm/lib/flexiblewebview/sample/demo/DemoWebViewActivity.kt) class is the entry-point and contains most of available settings for WebView. It will let you have an overview of this library.
 
 Other classes will bring you a deep look on other WebView features.
 
