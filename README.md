@@ -14,11 +14,8 @@ Table of contents
    * [Installation](#installation)
       * [Requirements](#requirements)
       * [Configuration](#configuration)
-      * [Releases](#releases)
-      * [Proguard](#proguard)
    * [Features](#features)
    * [Getting Started](#getting-started)
-   * [Examples](#examples)
 <!--te-->
 
 ## Installation
