@@ -13,22 +13,22 @@
         android:text="Demo WebView" />
 
     <Button
-        android:id="@+id/btnNormalProgressBar"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Normal Progress Bar" />
-
-    <Button
         android:id="@+id/btnSimple"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Simple WebView" />
 
     <Button
+        android:id="@+id/btnNormalProgressBar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Normal Progress Bar" />
+
+    <Button
         android:id="@+id/btnHtmlContent"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="HTML Content" />
+        android:text="HTML File or Content" />
 
     <Button
         android:id="@+id/btnUrlScheme"

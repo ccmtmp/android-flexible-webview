@@ -1,22 +1,19 @@
-package com.ccm.lib.flexiblewebview.demo
+package com.ccm.lib.flexiblewebview.sample.demo
 
 import android.content.Context
 import android.os.Bundle
 import android.widget.ProgressBar
-import androidx.appcompat.app.AppCompatActivity
 import com.ccm.lib.flexiblewebview.FlexibleWebView
-import com.ccm.lib.flexiblewebview.R
 import com.ccm.lib.flexiblewebview.clients.FlexibleChromeClient
 import com.ccm.lib.flexiblewebview.clients.FlexibleWebViewClient
-import com.ccm.lib.flexiblewebview.config.Constants
+import com.ccm.lib.flexiblewebview.sample.BaseActivity
+import com.ccm.lib.flexiblewebview.sample.R
+import com.ccm.lib.flexiblewebview.sample.config.Constants
 import com.ccm.lib.flexiblewebview.settings.CacheMode
 import com.lsjwzh.widget.materialloadingprogressbar.CircleProgressBar
 import kotlinx.android.synthetic.main.activity_demo.*
 
-class DemoWebViewActivity : AppCompatActivity() {
-
-    private val TAG = DemoWebViewActivity::class.java.simpleName
-    private lateinit var flexibleWebView: FlexibleWebView
+class DemoWebViewActivity : BaseActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -54,12 +51,5 @@ class DemoWebViewActivity : AppCompatActivity() {
         circleProgressBar: CircleProgressBar?,
         progressBar: ProgressBar? = null
     ) : FlexibleChromeClient(circleProgressBar, progressBar) {
-    }
-
-    override fun onBackPressed() {
-        if (this::flexibleWebView.isInitialized && flexibleWebView.handledBack()) {
-            return
-        }
-        super.onBackPressed()
     }
 }

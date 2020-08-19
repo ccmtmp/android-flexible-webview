@@ -1,4 +1,4 @@
-package com.ccm.lib.flexiblewebview.config
+package com.ccm.lib.flexiblewebview.sample.config
 
 object Constants {
     const val DEMO_URL = "https://www.youtube.com"

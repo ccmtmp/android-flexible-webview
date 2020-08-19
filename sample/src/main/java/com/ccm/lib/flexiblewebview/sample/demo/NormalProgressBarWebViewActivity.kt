@@ -1,16 +1,13 @@
-package com.ccm.lib.flexiblewebview.demo
+package com.ccm.lib.flexiblewebview.sample.demo
 
 import android.os.Bundle
-import androidx.appcompat.app.AppCompatActivity
 import com.ccm.lib.flexiblewebview.FlexibleWebView
-import com.ccm.lib.flexiblewebview.R
-import com.ccm.lib.flexiblewebview.config.Constants
+import com.ccm.lib.flexiblewebview.sample.BaseActivity
+import com.ccm.lib.flexiblewebview.sample.R
+import com.ccm.lib.flexiblewebview.sample.config.Constants
 import kotlinx.android.synthetic.main.activity_noraml_progress_bar.*
 
-class NormalProgressBarWebViewActivity : AppCompatActivity() {
-
-    private val TAG = NormalProgressBarWebViewActivity::class.java.simpleName
-    private lateinit var flexibleWebView: FlexibleWebView
+class NormalProgressBarWebViewActivity : BaseActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -22,12 +19,5 @@ class NormalProgressBarWebViewActivity : AppCompatActivity() {
             setWebView(webView)
             loadUrl(Constants.DEMO_URL)
         }
-    }
-
-    override fun onBackPressed() {
-        if (this::flexibleWebView.isInitialized && flexibleWebView.handledBack()) {
-            return
-        }
-        super.onBackPressed()
     }
 }

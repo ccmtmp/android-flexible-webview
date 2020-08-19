@@ -1,26 +1,23 @@
-package com.ccm.lib.flexiblewebview.demo
+package com.ccm.lib.flexiblewebview.sample.demo
 
 import android.os.Bundle
 import android.util.Log
 import android.webkit.JsResult
 import android.webkit.WebView
 import androidx.appcompat.app.AlertDialog
-import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.isVisible
 import com.ccm.lib.flexiblewebview.Constants
 import com.ccm.lib.flexiblewebview.FlexibleWebView
-import com.ccm.lib.flexiblewebview.R
 import com.ccm.lib.flexiblewebview.clients.FlexibleChromeClient
+import com.ccm.lib.flexiblewebview.sample.BaseActivity
+import com.ccm.lib.flexiblewebview.sample.R
 import kotlinx.android.synthetic.main.activity_demo.*
 
-class JavascriptEvaluationActivity : AppCompatActivity() {
+class JavascriptEvaluationActivity : BaseActivity() {
 
     companion object {
-        const val showAlertInChromeClient = false
+        const val showAlertInChromeClient = true
     }
-
-    private val TAG = JavascriptEvaluationActivity::class.java.simpleName
-    private lateinit var flexibleWebView: FlexibleWebView
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -45,7 +42,7 @@ class JavascriptEvaluationActivity : AppCompatActivity() {
 
     private fun sendMessage() {
         flexibleWebView.getCustomWebView()
-            .evaluateJavascript("javascript:show(\"${etText.text}\")") { value ->
+            .evaluateJavascript("show(\"${etText.text}\")") { value ->
                 Log.d(TAG, "callback: value=$value")
             }
     }
@@ -71,12 +68,5 @@ class JavascriptEvaluationActivity : AppCompatActivity() {
 
             return true
         }
-    }
-
-    override fun onBackPressed() {
-        if (this::flexibleWebView.isInitialized && flexibleWebView.handledBack()) {
-            return
-        }
-        super.onBackPressed()
     }
 }

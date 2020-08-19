@@ -1,21 +1,18 @@
-package com.ccm.lib.flexiblewebview.demo
+package com.ccm.lib.flexiblewebview.sample.demo
 
 import android.os.Bundle
-import androidx.appcompat.app.AppCompatActivity
 import com.ccm.lib.flexiblewebview.FlexibleWebView
-import com.ccm.lib.flexiblewebview.R
-import com.ccm.lib.flexiblewebview.config.Constants
 import com.ccm.lib.flexiblewebview.data.WebContent
+import com.ccm.lib.flexiblewebview.sample.BaseActivity
+import com.ccm.lib.flexiblewebview.sample.R
+import com.ccm.lib.flexiblewebview.sample.config.Constants
 import kotlinx.android.synthetic.main.activity_demo.*
 
-class HtmlContentActivity : AppCompatActivity() {
+class HtmlContentActivity : BaseActivity() {
 
     companion object {
         const val loadLocalHtml = true
     }
-
-    private val TAG = HtmlContentActivity::class.java.simpleName
-    private lateinit var flexibleWebView: FlexibleWebView
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -37,12 +34,5 @@ class HtmlContentActivity : AppCompatActivity() {
                 )
             }
         }
-    }
-
-    override fun onBackPressed() {
-        if (this::flexibleWebView.isInitialized && flexibleWebView.handledBack()) {
-            return
-        }
-        super.onBackPressed()
     }
 }
