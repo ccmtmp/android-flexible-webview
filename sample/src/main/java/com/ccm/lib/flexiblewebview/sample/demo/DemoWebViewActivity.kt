@@ -28,7 +28,10 @@ class DemoWebViewActivity : BaseActivity() {
             webViewContainer = this@DemoWebViewActivity.webViewContainer
 
             /* Optional to set these clients */
-            customWebViewClient = CustomFlexibleWebViewClient(this@DemoWebViewActivity)
+            customWebViewClient = CustomFlexibleWebViewClient(this@DemoWebViewActivity).apply {
+                userName = "YOUR_AUTH_USERNAME"
+                userPass = "YOUR_AUTH_PASSWORD"
+            }
             customWebChromeClient = CustomFlexibleChromeClient(this@DemoWebViewActivity.progressBar)
 
             /* If ProgressBar is set to customWebChromeClient, can skip this line */
