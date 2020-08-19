@@ -85,7 +85,7 @@ val flexibleWebView = FlexibleWebView(context).apply {
 
 **Download File**: Allow to download file from WebView by setting `allowDownloadFile = true`. There will 
 
-**Set Circle ProgressBar**: Can set `CircleProgressBar` or normal `ProgressBar` if want. 
+**Set Loading View**: Can set `CircleProgressBar` or normal `ProgressBar` if want. 
 
 ## Getting Started
 
