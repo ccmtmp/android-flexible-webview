@@ -9,7 +9,6 @@ import android.net.Uri
 import android.os.Environment
 import android.os.Handler
 import android.os.Looper
-import android.util.Log
 import android.view.ViewGroup
 import android.webkit.*
 import android.widget.ProgressBar
@@ -33,6 +32,7 @@ class FlexibleWebView(
     var cacheMode: CacheMode = CacheMode.LOAD_DEFAULT
     var allowHttpMixedContent = true
     var isJavaScriptEnabled = true
+    var isJavaScriptCanOpenWindowsAutomatically = false
     var allowAutoMediaPlayback = false
 
     var userAgent: String? = null
@@ -82,6 +82,7 @@ class FlexibleWebView(
             }
 
             javaScriptEnabled = isJavaScriptEnabled
+            javaScriptCanOpenWindowsAutomatically = isJavaScriptCanOpenWindowsAutomatically
 
             /**
              * After Api Level 17, user's gestures are required to play the sound of the web page loaded by WebView.

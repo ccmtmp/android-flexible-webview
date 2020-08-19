@@ -1,0 +1,13 @@
+<title>WebView addJavascriptInterface Example</title>
+<script language="javascript">
+    function sendToAndroid()
+    {
+        var str = document.getElementById('input').value;
+        javascript_object.showToast(str);
+    }
+</script>
+<center>
+    <h2>Web To Android</h2>
+    <input id="input" type="text">
+    <button onclick="sendToAndroid()">show Toast</button>
+</center>

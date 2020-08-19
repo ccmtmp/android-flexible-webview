@@ -32,5 +32,11 @@ class MainActivity : AppCompatActivity() {
         btnDownloadFile.setOnClickListener {
             startActivity(Intent(this, DownloadFileActivity::class.java))
         }
+        btnJavascriptInterface.setOnClickListener {
+            startActivity(Intent(this, JavascriptInterfaceActivity::class.java))
+        }
+        btnJavascriptEvaluation.setOnClickListener {
+            startActivity(Intent(this, JavascriptEvaluationActivity::class.java))
+        }
     }
 }

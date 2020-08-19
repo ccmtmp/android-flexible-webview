@@ -8,7 +8,7 @@ import androidx.core.view.ViewCompat
 import androidx.core.view.isVisible
 import com.lsjwzh.widget.materialloadingprogressbar.CircleProgressBar
 
-class FlexibleChromeClient(
+open class FlexibleChromeClient(
     private val circleProgressBar: CircleProgressBar? = null,
     private val progressBar: ProgressBar? = null
 ) : WebChromeClient() {

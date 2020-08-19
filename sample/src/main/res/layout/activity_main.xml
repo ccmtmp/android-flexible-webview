@@ -42,4 +42,16 @@
         android:layout_height="wrap_content"
         android:text="Download File" />
 
+    <Button
+        android:id="@+id/btnJavascriptInterface"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Javascript Interface" />
+
+    <Button
+        android:id="@+id/btnJavascriptEvaluation"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Javascript Evaluation" />
+
 </LinearLayout>
