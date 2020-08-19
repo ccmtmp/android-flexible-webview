@@ -35,17 +35,25 @@ Add `flexible-webview` to your `build.gradle` dependencies.
 
 ```
 dependencies {
-    implementation 'com.github.ccmtmp:flexible-webview:2.0.1'
+    implementation 'com.github.ccmtmp:flexible-webview:2.0.6'
 }
 ```
 
 ## Features
 
-**Set Authentication Header**: If need proceed with authentication with your credentials, set your user name and password to `HttpAuthWebViewClient`.
+**Set Authentication Header**: If need proceed with authentication with your credentials, set your user name and password to `FlexibleWebViewClient`.
 
 ```kotlin
-val webViewClient = HttpAuthWebViewClient(context, webView).apply {
+val webViewClient = FlexibleWebViewClient(context).apply {
     userName = "YOUR_AUTH_USERNAME"
     userPass = "YOUR_AUTH_PASSWORD"
 }
 ```
+
+## Getting Started
+
+Get started with [sample projects](https://github.com/ccmtmp/flexible-webview/tree/master/sample).
+
+The `DemoWebViewActivity` class is the entry-point and contains most of available settings for WebView. It will let you have an overview of this library.
+
+Other classes will bring you a deep look on other WebView features.
