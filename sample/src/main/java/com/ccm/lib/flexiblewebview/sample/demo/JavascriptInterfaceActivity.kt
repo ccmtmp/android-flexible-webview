@@ -22,7 +22,8 @@ class JavascriptInterfaceActivity : BaseActivity() {
             setWebView(this@JavascriptInterfaceActivity.webView)
             loadUrl("file:///android_asset/demo_javascript_interface.html")
 
-            getCustomWebView().addJavascriptInterface(JavascriptInterface(),
+            getCustomWebView().addJavascriptInterface(
+                JavascriptInterface(),
                 JS_TAG
             )
         }
