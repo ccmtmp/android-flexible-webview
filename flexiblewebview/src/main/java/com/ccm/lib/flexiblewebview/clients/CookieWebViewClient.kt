@@ -9,10 +9,10 @@ import android.webkit.WebView
  * @param cacheAppCookie: Store app cookie in app. (i.e. login cookie)
  * */
 open class CookieWebViewClient(
-    context: Context? = null,
-    private val cacheAppCookie: Boolean = true
+    context: Context? = null
 ) : HttpAuthWebViewClient(context) {
 
+    var cacheAppCookie: Boolean = true
     private var loginCookie: String? = null
 
     var callback: FlexibleCallback? = null

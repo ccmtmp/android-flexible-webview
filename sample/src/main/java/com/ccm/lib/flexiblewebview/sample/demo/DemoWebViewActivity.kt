@@ -20,17 +20,20 @@ class DemoWebViewActivity : BaseActivity() {
         setContentView(R.layout.activity_demo)
 
         flexibleWebView = FlexibleWebView(this).apply {
-            cacheMode = CacheMode.LOAD_NO_CACHE
-            animDuration = 700L
+            cacheMode = CacheMode.LOAD_DEFAULT
+            animDuration = 600L
             isJavaScriptEnabled = true
             isJavaScriptCanOpenWindowsAutomatically = false
-            allowHttpMixedContent = false
+            allowHttpMixedContent = true
             webViewContainer = this@DemoWebViewActivity.webViewContainer
 
             /* Optional to set these clients */
             customWebViewClient = CustomFlexibleWebViewClient(this@DemoWebViewActivity).apply {
-                userName = "YOUR_AUTH_USERNAME"
-                userPass = "YOUR_AUTH_PASSWORD"
+                // TODO: Set name and password if has authentication
+                userName = ""
+                userPass = ""
+
+                cacheAppCookie = true
             }
             customWebChromeClient = CustomFlexibleChromeClient(this@DemoWebViewActivity.progressBar)
 
@@ -43,15 +46,12 @@ class DemoWebViewActivity : BaseActivity() {
         }
     }
 
-    private inner class CustomFlexibleWebViewClient(
-        context: Context?,
-        cacheAppCookie: Boolean = true
-    ) :
-        FlexibleWebViewClient(context, cacheAppCookie) {
+    private inner class CustomFlexibleWebViewClient(context: Context? = null) :
+        FlexibleWebViewClient(context) {
     }
 
     private inner class CustomFlexibleChromeClient(
-        circleProgressBar: CircleProgressBar?,
+        circleProgressBar: CircleProgressBar? = null,
         progressBar: ProgressBar? = null
     ) : FlexibleChromeClient(circleProgressBar, progressBar) {
     }

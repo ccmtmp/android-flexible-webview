@@ -14,9 +14,8 @@ import com.ccm.lib.flexiblewebview.utils.atLeastApi21
 import com.ccm.lib.flexiblewebview.utils.atLeastApi23
 
 open class FlexibleWebViewClient(
-    private val context: Context? = null,
-    cacheAppCookie: Boolean = true
-) : CookieWebViewClient(context, cacheAppCookie) {
+    private val context: Context? = null
+) : CookieWebViewClient(context) {
 
     var handleUrlScheme = true
 
