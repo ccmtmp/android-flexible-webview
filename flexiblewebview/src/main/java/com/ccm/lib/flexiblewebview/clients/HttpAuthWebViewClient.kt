@@ -19,8 +19,8 @@ open class HttpAuthWebViewClient(
     /**
      * If need proceed with authentication with your credentials, just set your user name and password here.
      *
-     * Same implementation with:
-     * - Basic Authentication Header: `Authorization Basic WU9VUl9VU0VSTkFNRTpZT1VSX1BBU1NXT1JE`
+     * Same implementation with `Basic Authentication Header`:
+     * - `Authorization: Basic WU9VUl9VU0VSTkFNRTpZT1VSX1BBU1NXT1JE`
      *
      * Remark: Security Encapsulation of name and password should be handled by you.
      * */

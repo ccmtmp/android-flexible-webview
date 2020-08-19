@@ -16,7 +16,7 @@ import kotlinx.android.synthetic.main.activity_demo.*
 class JavascriptEvaluationActivity : BaseActivity() {
 
     companion object {
-        const val showAlertInChromeClient = true
+        const val handleAlertInChromeClient = true
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -25,8 +25,8 @@ class JavascriptEvaluationActivity : BaseActivity() {
 
         flexibleWebView = FlexibleWebView(this).apply {
             isJavaScriptEnabled = true  /* actually, its default set to true in FlexibleWebView */
-            isJavaScriptCanOpenWindowsAutomatically = true
-            if (showAlertInChromeClient) {
+            isJavaScriptCanOpenWindowsAutomatically = true  /* Optional*/
+            if (handleAlertInChromeClient) {
                 customWebChromeClient = CustomFlexibleChromeClient()
             }
 

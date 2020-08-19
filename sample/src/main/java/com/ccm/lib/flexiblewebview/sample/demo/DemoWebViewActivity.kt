@@ -33,7 +33,11 @@ class DemoWebViewActivity : BaseActivity() {
                 userName = ""
                 userPass = ""
 
-                cacheAppCookie = true
+                cacheAppCookie = false
+
+                handleUrlScheme = false
+
+                allowDownloadFile = false
             }
             customWebChromeClient = CustomFlexibleChromeClient(this@DemoWebViewActivity.progressBar)
 
