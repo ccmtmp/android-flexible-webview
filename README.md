@@ -71,7 +71,7 @@ loadWebContent(
 **URL Scheme**: Default handle scheme like: `tel:`, `sms:`, `mailto:`, etc. Can disable on `FlexibleWebViewClient`: 
 ```kotlin
 val flexibleWebView = FlexibleWebView(context).apply {
-    handleUrlScheme = true
+    handleUrlScheme = false
 }
 ```
 
@@ -83,9 +83,16 @@ val flexibleWebView = FlexibleWebView(context).apply {
 }
 ```
 
-**Download File**: Allow to download file from WebView by setting `allowDownloadFile = true`. There will 
+**Download File**: Default allowing to download file from WebView. Can disable by:
+```kotlin
+val flexibleWebView = FlexibleWebView(context).apply {
+    allowDownloadFile = false
+}
+```
 
 **Set Loading View**: Can set `CircleProgressBar` or normal `ProgressBar` if want. 
+
+**Retreive input WebView**: Use method `FlexibleWebView.getCustomWebView()`.
 
 ## Getting Started
 
