@@ -102,4 +102,4 @@ The [DemoWebViewActivity](https://github.com/ccmtmp/flexible-webview/blob/master
 
 Other classes will bring you a deep look on other WebView features.
 
-If any issues when using this libray, can try to take a look on debug log using logcat tag: `FlexibleWebView`.
+If any issues when using this libray, try to check debug log using logcat tag: `FlexibleWebView`.
